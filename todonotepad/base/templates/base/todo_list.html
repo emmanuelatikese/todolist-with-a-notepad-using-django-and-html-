@@ -1,0 +1,11 @@
+{% extends 'main.html' %}
+ 
+{% block content %}
+    <a href="{% url 'todoCreate'%}">todoCreate</a>
+        <div>
+            {% for todo in todos%}
+            <div>{{todo}}</div>
+                
+                {%endfor%}
+        </div>
+{% endblock  %}

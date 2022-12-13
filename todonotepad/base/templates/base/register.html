@@ -1,0 +1,17 @@
+{% extends 'main.html' %}
+ 
+{% block content %}
+        <form method="POST">
+        {% csrf_token %}
+        <label>{{form.username.label}}</label>
+        {{form.username}}
+
+        <label>{{form.password1.label}}</label>
+        {{form.password1}}
+
+        <label>{{form.password2.label}}</label>
+        {{form.password2}}
+            <input type="submit" value="submit"/>
+        </form>
+        <p>Already have an account? <a href="{% url 'Mainlogin' %}">Login</a></p>
+{% endblock  %}
