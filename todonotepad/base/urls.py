@@ -15,5 +15,8 @@ urlpatterns = [
     path('MainLogin/', MainLogin.as_view(), name='MainLogin'),
     path('LogoutView', LogoutView.as_view(next_page='MainLogin'), name='Logout'),
     # Now the paths for the notepad
-    
+    path('notepadHome/', views.notepadHome, name='notepadHome'),
+    path('notepadRoom/', views.notepadRoom, name='notepadRoom'),
+    path('notepadCreate/',views.notepadCreate, name="notepadCreate"),
+    path('notepadUpdate/', views.notepadUpdate, name="notepadUpdate"),
 ]

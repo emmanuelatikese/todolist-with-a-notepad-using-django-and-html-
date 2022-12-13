@@ -8,6 +8,11 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 from django.urls import reverse_lazy
+from django.db.models import Q
+from .forms import NoteForm
+from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
+
 
 
 def mainHome(request):
@@ -40,37 +45,94 @@ class MainLogin(LoginView):
     def get_success_url(self):
         return reverse_lazy('MainHome')
 
+#todo views.
 
-class Todolist(ListView):
+
+class Todolist(ListView, LoginRequiredMixin):
     model = Todo
     context_object_name = 'todos'
     
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['todos'] = context['todos'].filter(user=self.request.user)
+        context['count'] = context['todos'].filter(complete=False).count()
+
+        input_search = self.request.GET.get('q') or ''
+        if input_search:
+            context['todos'] = context['todos'].filter(
+                title__contains=input_search)
+
+        context['input_search'] = input_search
+
+        return context
     
     
-class TodoDelete(DeleteView):
+class TodoDelete(DeleteView, LoginRequiredMixin):
     model = Todo
     context_object_name = 'todoDelete'
     success_url = reverse_lazy("todotasks")
-    #Don't forget to add something 
+    def get_queryset(self):
+        owner = self.request.user
+        return self.model.objects.filter(user=owner)
 
-class TodoCreate(CreateView):
+
+class TodoCreate(CreateView, LoginRequiredMixin):
     model = Todo
     template_name = 'base/createTodo.html'
     fields = ['title', 'completed']
     success_url = reverse_lazy('todotasks')
-
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super(TodoCreate, self).form_valid(form)
     
 
-class TodoUpdate(UpdateView):
+class TodoUpdate(UpdateView, LoginRequiredMixin):
     model = Todo
     fields = ["title", "completed"]
     success_url = reverse_lazy('todotasks')
 
+#notepad views
 
-    
-    
+
+def notepadHome(request):
+    q = request.get.GET('q') if request.get.GET('q') is not None else ''
+    notepad = Notepad.objects.filter(Q(title__icontains = q) | Q(description__icontains=q))
+    note_count = notepad.count()
+    context = {'notepad': notepad, 'note_count': note_count}
+    return render(request, 'base/notepadHome.html', context)    
 
             
+
+def notepadRoom(request, pk):
+    notepad = Notepad.objects.get(id=pk)
+    context = {'notepad': notepad}
+    return render(request,'base/notepadRoom.html', context)
+
+def notepadCreate(request):
+    form = NoteForm()
+    if request.method == 'POST':
+        form = NoteForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('notepadHome')
+    context = {'form': form}
+    return render(request,'base/notepadCreate.html', context)
+
+
+def notepadUpdate(request, pk):
+    notepad = Notepad.objects.get(id=pk)
+    form = NoteForm()
+    if request.method == "POST":
+        form = NoteForm(request.POST, instance = notepad)
+        if form.is_valid():
+            form.save()
+            return redirect('notepadHome')
+    context = {'form': form}
+    return render(request,'base/notepadCreate.html', context)
+
+def notepadDelete(request, pk):
+    notepad = Notepad.objects.get(id=pk)
+    if request.method == "POST":
+        notepad.delete()
+        return redirect('notepadHome')
+    return render(request, 'base/notepadDelete.html', {})
