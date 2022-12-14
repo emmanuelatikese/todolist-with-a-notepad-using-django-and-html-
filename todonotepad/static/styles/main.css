@@ -2,19 +2,118 @@
 body{
     margin:0px;
     background: white;
+    color:#42B9FC;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 .container-content{
-width: 520px;
-height: 320px;
+width: 836px;
+height: 578px;
 border-style: solid;
 border-color: antiquewhite;
 margin-left: auto;
 margin-right:auto;
 margin-top:40px;
 border-width: 1px;
-background-color: #76BDFF26;
+background:#041118;
 border-radius: 8px;
 display: flex;
 flex-direction: column;
 flex-wrap: wrap;
+padding-left: 20px;
+padding-right:20px;
+border-color: #42B9FC;
+
+
+
+}
+a{
+    text-decoration:none;
+    color: #42B9FC;
+}
+.nav-container{
+    margin-top:40px;
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width:700px;
+    height:70px;
+    font-size: 10px;
+    gap:8px;
+    font-size: 30px;
+    
+}
+#log-id{
+    margin-right: 160px;
+}
+#Noteid{
+    margin-left:100px;
+}
+
+#content-home{
+    display: flex;
+    justify-content: center;
+    gap:20px;
+}
+
+#form-id{
+    margin-top:200px;
+    padding:5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+label{
+    margin-left:auto;
+    margin-right:auto;
+}
+input{
+    outline: none;
+}
+input[type="password"], input[type='text']{
+    width:200px;
+    height:20px;
+    border-radius:8px;
+    margin-left:auto;
+    margin-right:auto;
+    padding:5px;
+    margin-top:5px;
+    margin-bottom:5px;
+    border-color:#42B9FC;
+    background:#041118;
+    color:#42B9FC;
+    
+}
+input[type='submit']{
+    width:50px;
+    height:27px;
+    margin-left:auto;
+    margin-right:auto;
+    border-color:#42B9FC;
+    background:#041118;
+    color:#42B9FC;
+    border-radius:5px;
+    margin-top:5px;
+    cursor:pointer;
+    padding: 4px;
+}
+#h1-id{
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+#click-id{
+    margin-left: auto;
+    margin-right:auto;
+}
+#Register-id:hover{
+    text-decoration: underline;
+}
+
+#register-submit{
+    width:60px;
+    height:27px;
+    
+}
+li{
+    margin-left: auto;
+    margin-right:auto;
 }

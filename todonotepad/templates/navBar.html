@@ -1,0 +1,21 @@
+
+<nav class='nav-container'>
+            
+            <div id="log-id">
+                {% if request.user.is_authenticated%}
+            <a href="{% url 'Logout'%}" id="logout-p">
+                Logout
+            </a>
+            {% else %}
+            <a href="{% url 'MainLogin'%}" id="login-p">
+                Login
+            </a>
+            {% endif %}
+            </div>
+            <div id="content-home">
+                <a href="/" id="homeid">Home</a>
+                <a href="{%url 'todotasks'%}" id="todoid">Todo</a>
+                <a href="{% url 'notepadHome'%}" id="noteid">Notepad</a>
+            </div>
+            
+        </nav>

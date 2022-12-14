@@ -1,0 +1,23 @@
+{% extends 'main.html' %}
+
+    {% block content %}
+        
+       
+        <div class="container-content">
+            <form method="POST" id="form-id">
+            {% csrf_token %}
+              
+            <label>{{form.username.label}}</label>
+            {{form.username}}
+       
+        <label>{{form.password.label}}</label>
+        {{form.password}}
+                <input type="submit" value="login"/>
+
+        <p id='click-id'>Don't have an account? <br/>Click on <a href="{% url 'MainRegister'%}" id='Register-id'>Register</a></p>
+        </form>
+        </div>
+
+        
+        
+    {% endblock  %}
