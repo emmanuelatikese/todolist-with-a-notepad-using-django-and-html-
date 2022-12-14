@@ -14,7 +14,7 @@ from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 
 
-
+@login_required(login_url="MainLogin")
 def mainHome(request):
     return render(request, 'base/home.html',{})
 
@@ -54,10 +54,10 @@ class Todolist(ListView, LoginRequiredMixin):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['todos'] = context['todos'].filter(user=self.request.user)
-        context['count'] = context['todos'].filter(complete=False).count()
+        context['todos'] = context['todos'].filter(host=self.request.user)
+        context['count'] = context['todos'].filter(completed=False).count()
 
-        input_search = self.request.GET.get('q') or ''
+        input_search = self.request.GET.get('q') if self.request.GET.get("q") != None else None
         if input_search:
             context['todos'] = context['todos'].filter(
                 title__contains=input_search)
@@ -73,7 +73,7 @@ class TodoDelete(DeleteView, LoginRequiredMixin):
     success_url = reverse_lazy("todotasks")
     def get_queryset(self):
         owner = self.request.user
-        return self.model.objects.filter(user=owner)
+        return self.model.objects.filter(host=owner)
 
 
 class TodoCreate(CreateView, LoginRequiredMixin):
@@ -95,8 +95,9 @@ class TodoUpdate(UpdateView, LoginRequiredMixin):
 
 
 def notepadHome(request):
-    q = request.get.GET('q') if request.get.GET('q') is not None else ''
-    notepad = Notepad.objects.filter(Q(title__icontains = q) | Q(description__icontains=q))
+    q = request.GET.get('q') if request.GET.get('q') != None else ''
+    notepad = Notepad.objects.filter(
+        Q(title__icontains=q) | Q(body__icontains=q))
     note_count = notepad.count()
     context = {'notepad': notepad, 'note_count': note_count}
     return render(request, 'base/notepadHome.html', context)    

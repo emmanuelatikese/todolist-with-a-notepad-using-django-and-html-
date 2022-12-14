@@ -1,11 +1,24 @@
 {% extends 'main.html' %}
  
 {% block content %}
-    <a href="{% url 'todoCreate'%}">todoCreate</a>
+    <div class='container-content'>
+        {% include 'navBar.html' %}
+        <form id='search-id' id="search-id">
+            {% csrf_token %}
+            <input type='text' name='q'/>
+            <input type='submit' value="search"/>
+        </form>
+        
+        
         <div>
             {% for todo in todos%}
-            <div>{{todo}}</div>
+            <div class='div-container'>{{todo | capfirst}}</div>
                 
                 {%endfor%}
         </div>
+        
+            <a href="{% url 'todoCreate'%}" id='add-button'>Add</a>
+        
+    </div>
+    
 {% endblock  %}

@@ -6,13 +6,13 @@
         {% csrf_token %}
         <label>{{form.username.label}}</label>
         {{form.username}}
-  {% if form.username.errors %}
-    <ul>
-      {% for error in form.username.errors %}
-        <li>{{ error }}</li>
-      {% endfor %}
-    </ul>
-  {% endif %}
+    {% if form.username.errors %}
+        <ul>
+        {% for error in form.username.errors %}
+            <li>{{ error }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
 
         <label>{{form.password1.label}}</label>
         {{form.password1}}
@@ -22,17 +22,17 @@
         <li>{{ error }}</li>
       {% endfor %}
     </ul>
-  {% endif %}
+        {% endif %}
 
         <label>{{form.password2.label}}</label>
         {{form.password2}}
-        {% if form.password2.errors %}
-    <ul>
-      {% for error in form.password2.errors %}
-        <li>{{ error }}</li>
-      {% endfor %}
-    </ul>
-  {% endif %}
+                {% if form.password2.errors %}
+            <ul>
+            {% for error in form.password2.errors %}
+                <li>{{ error }}</li>
+            {% endfor %}
+            </ul>
+                {% endif %}
             <input type="submit" value="Register" id="register-submit"/>
 
              <p id='click-id'>Already have an account? <br/> Click on <a href="{% url 'MainLogin' %}" id='Register-id'>Login</a></p>
