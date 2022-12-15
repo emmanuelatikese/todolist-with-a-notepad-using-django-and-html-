@@ -4,5 +4,22 @@
     <div class='container-content'>
         {% include 'navBar.html' %}
         {% include 'searchBar.html' %}
-    
+ <div class="container-container">
+        {% for note in notepad%}
+        <a href="{%url 'notepadRoom' note.id %}" id="pointer-id">
+                <div class='div-container' >
+                   {{note| capfirst}}
+                    <br/>
+                    {{note.created | timesince}} ago
+                    
+                </div>
+        </a> 
+            {%endfor%}   
+                
+    </div>
+        
+
+
+
+    </div>
 {% endblock  %}

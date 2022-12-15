@@ -55,7 +55,7 @@ class Todolist(ListView, LoginRequiredMixin):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['todos'] = context['todos'].filter(host=self.request.user)
-        context['count'] = context['todos'].filter(completed=False).count()
+        context['count'] = context['todos'].filter(completed=True).count()
 
         input_search = self.request.GET.get('q') if self.request.GET.get("q") != None else None
         if input_search:
@@ -94,6 +94,7 @@ class TodoUpdate(UpdateView, LoginRequiredMixin):
 #notepad views
 
 
+@login_required(login_url="MainLogin")
 def notepadHome(request):
     q = request.GET.get('q') if request.GET.get('q') != None else ''
     notepad = Notepad.objects.filter(
@@ -103,12 +104,17 @@ def notepadHome(request):
     return render(request, 'base/notepadHome.html', context)    
 
             
-
+@login_required(login_url="MainLogin")
 def notepadRoom(request, pk):
+    notepad = Notepad.objects.get(id=pk)
+    if notepad.host != request.user:
+        return HttpResponse('You are not authorized to this page')
     notepad = Notepad.objects.get(id=pk)
     context = {'notepad': notepad}
     return render(request,'base/notepadRoom.html', context)
 
+
+@login_required(login_url="MainLogin")
 def notepadCreate(request):
     form = NoteForm()
     if request.method == 'POST':
@@ -120,8 +126,11 @@ def notepadCreate(request):
     return render(request,'base/notepadCreate.html', context)
 
 
+@login_required(login_url="MainLogin")
 def notepadUpdate(request, pk):
     notepad = Notepad.objects.get(id=pk)
+    if notepad.host != request.user:
+        return HttpResponse('you are not authorize on this page')
     form = NoteForm()
     if request.method == "POST":
         form = NoteForm(request.POST, instance = notepad)
@@ -131,8 +140,12 @@ def notepadUpdate(request, pk):
     context = {'form': form}
     return render(request,'base/notepadCreate.html', context)
 
+
+@login_required(login_url="MainLogin")
 def notepadDelete(request, pk):
     notepad = Notepad.objects.get(id=pk)
+    if notepad.host != request.user:
+        return HttpResponse('you are not authorized in this page')
     if request.method == "POST":
         notepad.delete()
         return redirect('notepadHome')

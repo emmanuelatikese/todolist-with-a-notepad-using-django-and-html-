@@ -4,19 +4,32 @@
     <div class='container-content'>
         {% include 'navBar.html' %}
         {%include 'searchBar.html'%}
-        
+
+        <div class='indicate'>
+        {% if count == 0 %}
+            <p >No task completed</p>
+        {%elif  count == 1 %}
+             <p > {{count}} Task completed</p>
+        {%else%}
+            <p > {{count}} Tasks completed</p>
+        {%endif%}
+        </div>
         
         <div class="container-container">
             {% for todo in todos%}
                 {% load static %}
                 <div class='div-container'>
                     {{todo | capfirst}}
-
+                    {% if request.user.is_authenticated%}
                     <div class="img-container">
                         <a href="{% url 'todoUpdate' todo.id%}"><img src="{% static 'images/edit (1).png'%}" id="img1"/></a>
-                        <a href="{% url 'Tododelete' todo.id%}%%"><img src="{% static 'images/trash.png'%}" id="img2"/></a>
-                    </div>
-                    
+                        <a href="{% url 'tododelete' todo.id%}"><img src="{% static 'images/trash.png'%}" id="img2"/></a>
+                    {{todo.created | timesince}} ago
+                    {%if todo.completed == True%}
+                         <img src="{% static 'images/verify.png'%}" id="img3"/>
+                        {%endif%}
+                        </div>
+                    {% endif %}
                 </div>
             {%endfor%}   
                 

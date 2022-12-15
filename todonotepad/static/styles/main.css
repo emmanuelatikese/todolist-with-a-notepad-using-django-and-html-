@@ -203,3 +203,28 @@ button{
     border-color: #42B9FC;
     cursor: pointer;
 }
+#delete-id{
+    text-align: center;
+}
+.indicate{
+    margin-right: auto;
+    margin-left: auto;
+}
+#img3{
+    width:20px;
+    height:20px;
+}
+
+#pointer-id{
+    cursor:pointer;
+}
+
+.middle-id{
+    margin-left:auto;
+    margin-right:auto;
+}
+hr{
+    background:#42B9FC;
+    width:300px;
+
+}

@@ -1,0 +1,23 @@
+{% extends 'main.html' %}
+
+    {% block content %}
+        
+       
+        <div class="container-content">   
+            {% include 'navBar.html'%}                 
+           
+           
+            <div class="middle-id">{{notepad}}</div>
+            <hr/>
+            
+            
+                <div class="container-container">
+                    
+               <div >{{notepad.body}}</div> 
+                </div>
+                
+        </div>
+
+        
+        
+    {% endblock  %}

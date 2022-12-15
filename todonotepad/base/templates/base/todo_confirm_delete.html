@@ -1,9 +1,15 @@
-{% extends 'templates/main.html' %}
+{% extends 'main.html' %}
  
-{% block  %}
-    <form method="POST" action="">
+{% block content %}
+    <div class="container-content">
+        <a href="{% url 'todotasks'%}" id='button-id'>
+            <button>Back</button>
+        </a>
+        <form method="POST" action="" id="form-id">
         {% csrf_token %}
-        <p> You sure you want to delete this task: {{todoDelete}}</p>
-            <input type="submit" value="submit"/>
+        <p id="delete-id"> You sure you want to delete "{{todoDelete}}" </p>
+            <input type="submit" value="Delete"/>
     </form>
+    </div>
+    
 {% endblock  %}

@@ -19,6 +19,9 @@ class Notepad(models.Model):
     host = models.ForeignKey(User, on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now=True)
     updated = models.DateField(auto_now=True)
+    class Meta: ordering = ["-created", "-updated"]
+    
+    def __str__(self): return self.title
     
 
     
