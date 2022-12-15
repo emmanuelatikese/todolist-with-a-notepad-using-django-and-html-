@@ -3,11 +3,7 @@
 {% block content %}
     <div class='container-content'>
         {% include 'navBar.html' %}
-        <form id='search-id' id="search-id">
-            {% csrf_token %}
-            <input type='text' name='q'/>
-            <input type='submit' value="search"/>
-        </form>
+        {%include 'searchBar.html'%}
         
         
         <div class="container-container">
@@ -17,8 +13,8 @@
                     {{todo | capfirst}}
 
                     <div class="img-container">
-                        <img src="{% static 'images/edit (1).png'%}" id="img1"/>
-                        <img src="{% static 'images/trash.png'%}" id="img2"/>
+                        <a href="{% url 'todoUpdate' todo.id%}"><img src="{% static 'images/edit (1).png'%}" id="img1"/></a>
+                        <a href="{% url 'Tododelete' todo.id%}%%"><img src="{% static 'images/trash.png'%}" id="img2"/></a>
                     </div>
                     
                 </div>

@@ -3,13 +3,6 @@
 {% block content %}
     <div class='container-content'>
         {% include 'navBar.html' %}
-        <form>
-            {% csrf_token %}
-            <input type='text' name='q'/>
-            <input type='submit' value="search"/>
-        </form>
-        
-        
-    </div>
+        {% include 'searchBar.html' %}
     
 {% endblock  %}
