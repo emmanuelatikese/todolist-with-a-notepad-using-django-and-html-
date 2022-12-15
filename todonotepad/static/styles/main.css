@@ -147,9 +147,42 @@ li{
     margin-left:auto;
     padding-top:5px;
     text-align: center;
-    margin-top:10px;
+    margin-top:30px;
     width:400px;
     height:50px;
+    display: flex;
+    flex-direction: column;
+    
     
 
+}
+.container-container{
+    overflow-y: scroll;
+    margin-left: auto;
+    margin-right: auto;
+    width: 500px;
+    height: 350px;
+
+}
+::-webkit-scrollbar {
+  width: 12px;
+  background-color: #42B9FC;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #041118;
+  border-radius: 10px;
+}
+.img-container{
+    display: flex;
+    flex-direction: row;
+    gap:4px;
+    align-items: center;
+    justify-content: center;
+    margin-top:3px;
+    
+}
+#img1,#img2{
+    width:20px;
+    height: 20px;
 }

@@ -82,7 +82,7 @@ class TodoCreate(CreateView, LoginRequiredMixin):
     fields = ['title', 'completed']
     success_url = reverse_lazy('todotasks')
     def form_valid(self, form):
-        form.instance.user = self.request.user
+        form.instance.host = self.request.user
         return super(TodoCreate, self).form_valid(form)
     
 

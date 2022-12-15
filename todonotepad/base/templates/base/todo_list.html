@@ -10,11 +10,21 @@
         </form>
         
         
-        <div>
+        <div class="container-container">
             {% for todo in todos%}
-            <div class='div-container'>{{todo | capfirst}}</div>
+                {% load static %}
+                <div class='div-container'>
+                    {{todo | capfirst}}
+
+                    <div class="img-container">
+                        <img src="{% static 'images/edit (1).png'%}" id="img1"/>
+                        <img src="{% static 'images/trash.png'%}" id="img2"/>
+                    </div>
+                    
+                </div>
+            {%endfor%}   
                 
-                {%endfor%}
+                
         </div>
         
             <a href="{% url 'todoCreate'%}" id='add-button'>Add</a>
