@@ -1,4 +1,4 @@
-# todolist-with-a-notepad-using-django-and-html-
+# todolist-with-a-notepad-using-django-and-html.
 ## Description
 
 This code defines several classes and functions that implement a simple to-do and note-taking app using the Django web framework. 
