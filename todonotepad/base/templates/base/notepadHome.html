@@ -9,17 +9,28 @@
         <a href="{%url 'notepadRoom' note.id %}" id="pointer-id">
                 <div class='div-container' >
                    {{note| capfirst}}
+                   {%load static%}
                     <br/>
+                    {% if request.user.is_authenticated%}
+                    <div class="img-container">
+                        <a href="{% url 'notepadUpdate' note.id%}"><img src="{% static 'images/edit (1).png'%}" id="img1"/></a>
+                        <a href="{% url 'notepadDelete' note.id%}"><img src="{% static 'images/trash.png'%}" id="img2"/></a>
+                    
                     {{note.created | timesince}} ago
+                    </div>
+                    {% endif %}
+                    
                     
                 </div>
         </a> 
             {%endfor%}   
-                
+               
     </div>
         
 
-
+        {% if request.user.is_authenticated%}
+             <a href="{% url 'notepadCreate' %}" ><img src='{%static "images/plus.png" %}' id='icon-button'/></a>   
+                {%endif%} 
 
     </div>
 {% endblock  %}

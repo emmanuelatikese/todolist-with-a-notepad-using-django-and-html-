@@ -5,15 +5,16 @@
         <a href="{% url 'notepadHome'%}" id='button-id'>
             <button>Back</button>
         </a>
-        <form method='POST' action='' >
+        <form method='POST'>
                 {% csrf_token %}
                
                 <label >{{form.title.label}}</label>
                 {{form.title}}
                 <br/>
-                <label>{{form.body.label}}</label>
-                <div id='completed-id'>{{form.body}}</div>
+                <label id='body-label'>{{form.body.label}}</label>
+                <div id='body-id'>{{form.body}}</div>
                 <br/>
+
                 <input type='submit' value='add'/>
 
         </form>

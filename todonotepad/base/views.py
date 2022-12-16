@@ -123,30 +123,32 @@ def notepadCreate(request):
             form.save()
             return redirect('notepadHome')
     context = {'form': form}
-    return render(request,'base/notepadCreate.html', context)
+    return render(request,'base/noteCreate.html', context)
 
 
 @login_required(login_url="MainLogin")
 def notepadUpdate(request, pk):
     notepad = Notepad.objects.get(id=pk)
-    if notepad.host != request.user:
+    todo = Todo.objects.get(id=pk)
+    if todo.host != request.user:
         return HttpResponse('you are not authorize on this page')
-    form = NoteForm()
+    form = NoteForm(instance=notepad)
     if request.method == "POST":
-        form = NoteForm(request.POST, instance = notepad)
+        form = NoteForm(request.POST, instance=notepad)
         if form.is_valid():
             form.save()
             return redirect('notepadHome')
     context = {'form': form}
-    return render(request,'base/notepadCreate.html', context)
+    return render(request,'base/noteUpdate.html', context)
 
 
 @login_required(login_url="MainLogin")
 def notepadDelete(request, pk):
     notepad = Notepad.objects.get(id=pk)
-    if notepad.host != request.user:
-        return HttpResponse('you are not authorized in this page')
+    todo = Todo.objects.get(id=pk)
+    if todo.host != request.user:
+        return HttpResponse('you are not authorize on this page')
     if request.method == "POST":
         notepad.delete()
         return redirect('notepadHome')
-    return render(request, 'base/notepadDelete.html', {})
+    return render(request, 'base/notepadDelete.html', {'notepad':notepad})

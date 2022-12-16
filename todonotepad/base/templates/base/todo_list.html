@@ -35,9 +35,9 @@
                 
                 
         </div>
-        
+            {% if request.user.is_authenticated%}
             <a href="{% url 'todoCreate'%}" id='add-button'>Add</a>
-        
+            {%endif%}
     </div>
     
 {% endblock  %}

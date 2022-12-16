@@ -17,6 +17,7 @@ urlpatterns = [
     # Now the paths for the notepad
     path('notepadHome/', views.notepadHome, name='notepadHome'),
     path('notepadRoom/<str:pk>/', views.notepadRoom, name='notepadRoom'),
-    path('notepadCreate/<str:pk>/',views.notepadCreate, name="notepadCreate"),
+    path('notepadCreate/',views.notepadCreate, name="notepadCreate"),
     path('notepadUpdate/<str:pk>/', views.notepadUpdate, name="notepadUpdate"),
+    path('notepadDelete/<str:pk>', views.notepadDelete, name='notepadDelete')
 ]

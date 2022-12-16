@@ -1,0 +1,15 @@
+{% extends 'main.html' %}
+ 
+{% block content %}
+    <div class="container-content">
+        <a href="{% url 'notepadHome'%}" id='button-id'>
+            <button>Back</button>
+        </a>
+        <form method="POST" action="" id="form-id">
+        {% csrf_token %}
+        <p id="delete-id"> You sure you want to delete "{{notepad}}" </p>
+            <input type="submit" value="Delete"/>
+    </form>
+    </div>
+    
+{% endblock  %}

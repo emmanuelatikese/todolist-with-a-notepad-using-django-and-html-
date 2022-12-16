@@ -7,16 +7,16 @@
             {% include 'navBar.html'%}                 
            
            
-            <div class="middle-id">{{notepad}}</div>
+            <div class="middle-id">{{notepad| capfirst}}</div>
             <hr/>
             
             
-                <div class="container-container">
+            <div class="container-container">
                     
-               <div >{{notepad.body}}</div> 
-                </div>
+               <div >{{notepad.body | capfirst}}</div> 
+            </div>
                 
-        </div>
+         </div>
 
         
         
