@@ -161,7 +161,7 @@ li{
     margin-left: auto;
     margin-right: auto;
     width: 500px;
-    height: 350px;
+    height: 300px;
 
 }
 ::-webkit-scrollbar {
@@ -209,6 +209,7 @@ button{
 .indicate{
     margin-right: auto;
     margin-left: auto;
+    margin-bottom: 0;
 }
 #img3{
     width:20px;
@@ -235,4 +236,10 @@ hr{
 }
 textarea{
     background-color: #041118;
+}
+#intro-id{
+    font-size: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }

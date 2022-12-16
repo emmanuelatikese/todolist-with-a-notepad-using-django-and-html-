@@ -107,9 +107,6 @@ def notepadHome(request):
 @login_required(login_url="MainLogin")
 def notepadRoom(request, pk):
     notepad = Notepad.objects.get(id=pk)
-    if notepad.host != request.user:
-        return HttpResponse('You are not authorized to this page')
-    notepad = Notepad.objects.get(id=pk)
     context = {'notepad': notepad}
     return render(request,'base/notepadRoom.html', context)
 
