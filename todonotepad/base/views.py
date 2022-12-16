@@ -126,9 +126,6 @@ def notepadCreate(request):
 @login_required(login_url="MainLogin")
 def notepadUpdate(request, pk):
     notepad = Notepad.objects.get(id=pk)
-    todo = Todo.objects.get(id=pk)
-    if todo.host != request.user:
-        return HttpResponse('you are not authorize on this page')
     form = NoteForm(instance=notepad)
     if request.method == "POST":
         form = NoteForm(request.POST, instance=notepad)
@@ -142,9 +139,6 @@ def notepadUpdate(request, pk):
 @login_required(login_url="MainLogin")
 def notepadDelete(request, pk):
     notepad = Notepad.objects.get(id=pk)
-    todo = Todo.objects.get(id=pk)
-    if todo.host != request.user:
-        return HttpResponse('you are not authorize on this page')
     if request.method == "POST":
         notepad.delete()
         return redirect('notepadHome')

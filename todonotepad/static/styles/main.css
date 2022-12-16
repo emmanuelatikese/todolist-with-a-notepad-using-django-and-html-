@@ -236,6 +236,13 @@ hr{
 }
 textarea{
     background-color: #041118;
+    color:#42B9FC;
+    border-color:#42B9FC;
+    border-style: solid;
+    border-width: 1px;
+    outline: none;
+    width:400px;
+    height:400px;
 }
 #intro-id{
     font-size: 40px;
